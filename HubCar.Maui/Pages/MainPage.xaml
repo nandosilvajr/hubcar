@@ -6,10 +6,11 @@
              xmlns:models="clr-namespace:HubCar.Shared.Models;assembly=HubCar.Shared"
              x:Class="HubCar.Maui.Pages.MainPage"
              Shell.NavBarIsVisible="true"
+             Shell.FlyoutBehavior="Disabled"
              x:DataType="viewModels:MainPageViewModel">
     <Shell.TitleView>
-    <Grid HorizontalOptions="Fill"
-          ColumnDefinitions="10*, 2*">
+        <Grid HorizontalOptions="Fill"
+              ColumnDefinitions="10*, 2*">
         <Label Grid.ColumnSpan="2"
                VerticalOptions="Center"
                HorizontalOptions="Center"
@@ -20,6 +21,23 @@
                Text="CarHub"></Label>
     </Grid>
     </Shell.TitleView>
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="{DynamicResource Gray300}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
         <Grid
             RowDefinitions="1*,11*"
             Padding="8,0">
@@ -78,10 +96,11 @@
             </Grid>
             <CollectionView
                 Grid.Row="1"
-                ZIndex="99999"
+                SelectionMode="Single"
                 Margin="0, 0, 0 , 60"
                 ItemsLayout="VerticalGrid, 2"
                 SelectionChangedCommand="{Binding SelectedCarExecuteCommand}"
+                SelectionChangedCommandParameter="{Binding SelectedCar}"
                 SelectedItem="{Binding SelectedCar}"
                 ItemsSource="{Binding CarItems}">
                 <CollectionView.ItemTemplate>

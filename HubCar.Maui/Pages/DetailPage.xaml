@@ -1,13 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:HubCar.Maui.ViewModels"
+             xmlns:constants="clr-namespace:HubCar.Shared.Constants;assembly=HubCar.Shared"
              x:DataType="viewModels:DetailPageViewModel"
              x:Class="HubCar.Maui.Pages.DetailPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="{Binding Car.Make }"></Label>
+        <StackLayout Padding="12" Spacing="16">
+            <Frame
+                Padding="0"
+                CornerRadius="10"
+                HasShadow="True"
+                BorderColor="Transparent">
+                <Image.Shadow>
+                    <Shadow Brush="Gray"
+                            Offset="0.1,0.1"
+                            Opacity="1" />
+                </Image.Shadow>
+                <Image 
+                    VerticalOptions="Fill"
+                    Aspect="AspectFill"
+                    Source="car_placeholder.jpg"></Image>
+            </Frame>
+            <Grid HorizontalOptions="Fill">
+                 <Label
+                     HorizontalOptions="Start"
+                     VerticalOptions="Center"
+                     FontAttributes="Bold"
+                     FontSize="16"
+                     TextColor="{DynamicResource Primary}"
+                     FontFamily="OpenSansSemibold">
+                     <Label.Text>
+                         <MultiBinding StringFormat="{}{0} - {1}">
+                             <Binding Path="Car.Make" />
+                             <Binding Path="Car.Model" />
+                         </MultiBinding>
+                     </Label.Text>
+                 </Label>
+                <Button
+                    HeightRequest="32"
+                    WidthRequest="32"
+                    CornerRadius="18"
+                    Margin="8"
+                    Padding="0"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start">
+                    <Button.ImageSource>
+                        <FontImageSource Glyph="{x:Static constants:MaterialIcon.Favorite}"
+                                         Size="18"
+                                         Color="{Binding TextColor, Source={RelativeSource AncestorType={x:Type Element}}}"
+                                         FontFamily="MaterialIcon" />
+                    </Button.ImageSource>
+                </Button>
+            </Grid>
+            <Grid ColumnDefinitions="1*,1*">
+                <VerticalStackLayout>
+                    <HorizontalStackLayout>
+                        <Image HorizontalOptions="End">
+                            <Image.Source>
+                                <FontImageSource Glyph="{x:Static constants:MaterialIcon.ArrowDropDown}"
+                                                 Size="32"
+                                                 Color="{StaticResource Gray400}"
+                                                 FontFamily="MaterialIcon" />
+                            </Image.Source>
+                        </Image>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Grid>
+           
         </StackLayout>
+        
+        <!--
+
+        [JsonPropertyName("engineSize")]
+        public string? EngineSize { get; set; }
+
+        [JsonPropertyName("fuel")]
+        public string? Fuel { get; set; }
+
+        [JsonPropertyName("year")]
+        public int Year { get; set; }
+
+        [JsonPropertyName("mileage")]
+        public int Mileage { get; set; }
+
+        [JsonPropertyName("auctionDateTime")]
+        public DateTime AuctionDateTime { get; set; }
+
+        [JsonPropertyName("startingBid")]
+        public int StartingBid { get; set; }
+
+        [JsonPropertyName("favourite")]
+        public bool Favourite { get; set; }
+
+        [JsonPropertyName("specification")]
+        public Specification? Specification { get; set; }
+
+        [JsonPropertyName("ownership")]
+        public Ownership? Ownership { get; set; }
+
+        [JsonPropertyName("equipment")]
+        public List<string>? Equipment { get; set; }
+-->
     </ContentPage.Content>
 </ContentPage>

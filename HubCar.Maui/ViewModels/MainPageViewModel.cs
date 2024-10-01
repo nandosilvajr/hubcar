@@ -17,7 +17,7 @@ namespace HubCar.Maui.ViewModels
         [ObservableProperty] private ObservableCollection<Car>? _carItems = new ();
         [ObservableProperty] private bool _isNextPageEnable;
         [ObservableProperty] private FilterRequest _filterRequest = new ();
-        [ObservableProperty] private Car _selectedCar = new ();
+        [ObservableProperty] private Car? _selectedCar;
 
         [RelayCommand]
         async Task NextPage()
@@ -56,13 +56,16 @@ namespace HubCar.Maui.ViewModels
         }
 
         [RelayCommand]
-        async Task SelectedCarExecute(Car car)
+        async Task SelectedCarExecute(Car? car)
         {
-            var navigationParameter = new ShellNavigationQueryParameters
+            if (car is not null)
             {
-                { "Car", car }
-            };
-            await Shell.Current.GoToAsync($"detailpage", navigationParameter);
+                var navigationParameter = new ShellNavigationQueryParameters
+                {
+                    { "Car", car }
+                };
+                await Shell.Current.GoToAsync($"detailpage", navigationParameter); 
+            }
         }
 
         public MainPageViewModel(IServiceProvider serviceProvider)
