@@ -1,0 +1,33 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:constants="clr-namespace:HubCar.Shared.Constants;assembly=HubCar.Shared">
+        <DataTemplate x:Key="ExploreItemTemplate">
+            <ViewCell>
+               <Grid 
+                   RowDefinitions="10*,2*"
+                   MinimumWidthRequest="80" 
+                   MinimumHeightRequest="230">
+                   <Image 
+                       MinimumWidthRequest="80" 
+                       Source="car_placeholder.jpg"></Image>
+                   <Button
+                       HorizontalOptions="End"
+                       VerticalOptions="Start"
+                        Style="{StaticResource CircularButton}">
+                       <Button.ImageSource>
+                           <FontImageSource Glyph="{x:Static constants:MaterialIcon.Favorite}"
+                                            Size="18"
+                                            Color="{Binding TextColor, Source={RelativeSource AncestorType={x:Type Element}}}"
+                                            FontFamily="MaterialIcon" />
+                       </Button.ImageSource>
+                   </Button>
+                   <VerticalStackLayout
+                       Grid.Row="1">
+                       <Label Style="{StaticResource Headline}" Text="{TemplateBinding BindingContext.Make}"></Label>
+                       <Label Style="{StaticResource SubHeadline}" Text="{TemplateBinding BindingContext.AuctionRemaining}"></Label>
+                   </VerticalStackLayout>
+
+               </Grid>
+            </ViewCell>
+        </DataTemplate>
+</ResourceDictionary>

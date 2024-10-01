@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:HubCar.Maui.ViewModels"
+             xmlns:constants="clr-namespace:HubCar.Shared.Constants;assembly=HubCar.Shared"
+             xmlns:models="clr-namespace:HubCar.Shared.Models;assembly=HubCar.Shared"
+             x:Class="HubCar.Maui.Pages.MainPage"
+             Shell.NavBarIsVisible="true"
+             x:DataType="viewModels:MainPageViewModel">
+    <Shell.TitleView>
+    <Grid HorizontalOptions="Fill"
+          ColumnDefinitions="10*, 2*">
+        <Label Grid.ColumnSpan="2"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               FontSize="18"
+               FontAttributes="Bold"
+               TextColor="{StaticResource Primary}"
+               FontFamily="OpenSansSemibold"
+               Text="CarHub"></Label>
+    </Grid>
+    </Shell.TitleView>
+        <Grid
+            RowDefinitions="1*,11*"
+            Padding="8,0">
+            <Grid Grid.Row="0"
+                  ColumnSpacing="4"
+                  Margin="0, 0, 8, 0"
+                  ColumnDefinitions="16*,3*"
+                  VerticalOptions="Fill">
+                <Frame 
+                    Grid.Column="0"
+                    CornerRadius="10"
+                    Margin="4"
+                       BorderColor="Transparent"
+                       BackgroundColor="{DynamicResource Gray100}"
+                       ></Frame>
+                <Grid 
+                    Grid.Column="0"
+                    Padding="12, 0"
+                    HorizontalOptions="Fill">
+                    <Picker
+                        HeightRequest="72"
+                        Title="Show items"
+                        SelectedIndexChanged="OnPageSizeSelectedIndexChanged"
+                        SelectedItem="{Binding FilterRequest.PageSize}"
+                        VerticalOptions="Center">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:Int32}">
+                                <x:Int32>10</x:Int32>
+                                <x:Int32>25</x:Int32>
+                                <x:Int32>50</x:Int32>
+                                <x:Int32>100</x:Int32>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    <Image HorizontalOptions="End">
+                        <Image.Source>
+                            <FontImageSource Glyph="{x:Static constants:MaterialIcon.ArrowDropDown}"
+                                             Size="32"
+                                             Color="{StaticResource Gray400}"
+                                             FontFamily="MaterialIcon" />
+                        </Image.Source>
+                    </Image>
+                </Grid>
+                    <Button Grid.Column="1"
+                            BackgroundColor="Transparent"
+                            VerticalOptions="Fill"
+                            HorizontalOptions="Center"
+                            Command="{Binding OpenFiltersCommand}">
+                        <Button.ImageSource>
+                            <FontImageSource Glyph="{x:Static constants:MaterialIcon.Tune}"
+                                             Size="32"
+                                             Color="{StaticResource Gray400}"
+                                             FontFamily="MaterialIcon" />
+                        </Button.ImageSource>
+                    </Button>
+            </Grid>
+            <CollectionView
+                Grid.Row="1"
+                ZIndex="99999"
+                Margin="0, 0, 0 , 60"
+                ItemsLayout="VerticalGrid, 2"
+                SelectionChangedCommand="{Binding SelectedCarExecuteCommand}"
+                SelectedItem="{Binding SelectedCar}"
+                ItemsSource="{Binding CarItems}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Car">
+                        <Grid 
+                            Margin="8"
+                            Padding="8"
+                            RowDefinitions="9*,3*"
+                            WidthRequest="200"
+                            HeightRequest="250">
+                            <Frame
+                                Padding="0"
+                                CornerRadius="10"
+                                HasShadow="True"
+                                BorderColor="Transparent">
+                                <Image.Shadow>
+                                    <Shadow Brush="Gray"
+                                            Offset="0.1,0.1"
+                                            Opacity="1" />
+                                </Image.Shadow>
+                                <Image 
+                                    VerticalOptions="Fill"
+                                    Aspect="AspectFill"
+                                    Source="car_placeholder.jpg"></Image>
+                            </Frame>
+                            <Button
+                                HeightRequest="32"
+                                WidthRequest="32"
+                                CornerRadius="18"
+                                Margin="8"
+                                Padding="0"
+                                HorizontalOptions="End"
+                                VerticalOptions="Start">
+                                <Button.ImageSource>
+                                    <FontImageSource Glyph="{x:Static constants:MaterialIcon.Favorite}"
+                                                     Size="18"
+                                                     Color="{Binding TextColor, Source={RelativeSource AncestorType={x:Type Element}}}"
+                                                     FontFamily="MaterialIcon" />
+                                </Button.ImageSource>
+                            </Button>
+                            <VerticalStackLayout
+                                Grid.Row="1"
+                                VerticalOptions="Center"
+                                Spacing="8">
+                                <Label
+                                    FontAttributes="Bold">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0} | {1}">
+                                            <Binding Path="Make" />
+                                            <Binding Path="Model" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label 
+                                    FontAttributes="Bold"
+                                    TextColor="DimGray"
+                                    FontSize="12"
+                                    Text="{Binding AuctionRemaining}"></Label>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <ActivityIndicator 
+                HeightRequest="48" 
+                WidthRequest="48"
+                IsRunning="{Binding IsBusy}"></ActivityIndicator>
+            <Grid 
+                Grid.Row="1"
+                Margin="12, 12"
+                ColumnDefinitions="1*,1*,1*"
+                HeightRequest="50" 
+                VerticalOptions="End">
+                <Button 
+                    Grid.Column="0"
+                    Text="Previous"
+                    Command="{Binding PreviousPageCommand}"></Button>
+                <Frame Grid.Column="1" 
+                       HorizontalOptions="Center" 
+                       BackgroundColor="{DynamicResource Primary}">
+                </Frame>
+                <Label Grid.Column="1" 
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       TextColor="White"
+                       Text="{Binding FilterRequest.PageNumber}"></Label>
+                <Button 
+                    Grid.Column="2"
+                    Text="Next"
+                    IsEnabled="{Binding IsNextPageEnable}"
+                    Command="{Binding NextPageCommand}"></Button>
+            </Grid>
+        </Grid>
+</ContentPage>
