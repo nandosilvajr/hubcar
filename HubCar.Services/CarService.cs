@@ -7,13 +7,18 @@ namespace HubCar.Services
 {
     public class CarService : ICarService
     {
+        private readonly IFileService _fileService;
         private readonly string _jsonPath = "Data/vehicles_dataset.json";
-        
+
+        public CarService(IFileService fileService)
+        {
+            _fileService = fileService;
+        }
         public async Task<List<Car>?> GetCarsAsync(FilterRequest filterRequest)
         {
             try
             {
-                await using var stream = await FileSystem.OpenAppPackageFileAsync(_jsonPath);
+                await using var stream = await _fileService.OpenFileAsync(_jsonPath);
                 using var reader = new StreamReader(stream);
                 var json = await reader.ReadToEndAsync();
                 
@@ -73,7 +78,7 @@ namespace HubCar.Services
         {
             try
             {
-                await using var stream = await FileSystem.OpenAppPackageFileAsync(_jsonPath);
+                await using var stream = await _fileService.OpenFileAsync(_jsonPath);
                 using var reader = new StreamReader(stream);
                 var json = await reader.ReadToEndAsync();
                 
@@ -116,7 +121,7 @@ namespace HubCar.Services
         {
             try
             {
-                await using var stream = await FileSystem.OpenAppPackageFileAsync(_jsonPath);
+                await using var stream = await _fileService.OpenFileAsync(_jsonPath);
                 using var reader = new StreamReader(stream);
                 var json = await reader.ReadToEndAsync();
                 

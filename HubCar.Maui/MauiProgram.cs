@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using HubCar.Maui.Pages;
+using HubCar.Maui.Services;
 using HubCar.Maui.ViewModels;
 using HubCar.Services;
 using MauiIcons.Material;
@@ -30,6 +31,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<DetailPageViewModel>();
         builder.Services.AddTransient<DetailPage>();
         builder.Services.AddTransient<FilterPopup, FilterPopupViewModel>();
+        builder.Services.AddSingleton<IFileService, FileService>();
+
         
         Microsoft.Maui.Handlers.PickerHandler.Mapper.AppendToMapping(nameof(Picker), (handler, view) =>
         {

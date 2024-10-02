@@ -1,11 +1,10 @@
-
-
+using System.Text;
 using HubCar.Services;
-using HubCar.Services.Converters;
 using HubCar.Shared.Models;
 using Moq;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
+using Microsoft.Maui.Storage;
 
 namespace HubCar.UnitTest
 {
@@ -13,12 +12,15 @@ namespace HubCar.UnitTest
     public class NUnitTest
     {
         private Mock<ICarService> _mockCarService;
+        
+     
 
         [SetUp]
         public void Setup()
         {
             _mockCarService = new Mock<ICarService>();
         }
+        
         [Test]
         public async Task GetCarsAsync_ReturnsFilteredCars()
         {
@@ -106,5 +108,110 @@ namespace HubCar.UnitTest
             ClassicAssert.AreEqual("Camry", models[0]);
             ClassicAssert.AreEqual("Corolla", models[1]);
         }
+        
+        [Test]
+        public async Task GetCarsAsync_ReturnsFilteredCars2()
+        {
+            var mockFileService = new Mock<IFileService>();
+
+            var stream = new MemoryStream(Encoding.UTF8.GetBytes(JsonData));
+
+            mockFileService.Setup(fs => fs.OpenFileAsync(It.IsAny<string>())).ReturnsAsync(stream);
+
+            var carService = new CarService(mockFileService.Object);
+
+            var filterRequest = new FilterRequest
+            {
+                Make = "Toyota",
+                MimimumBid = 0,
+                MaximiumBid = 0,
+                IsFavorite = false,
+                FilterSort = FilterSort.MakeAscending.Name,
+            };
+            var cars = await carService.GetCarsAsync(filterRequest);
+
+            // Assert
+            ClassicAssert.IsNotNull(cars);
+            ClassicAssert.IsTrue(cars.Any());
+            ClassicAssert.AreEqual("Toyota", cars[0].Make);
+        }
+
+        private static string JsonData => 
+        "[ " +
+          "{ " +
+            "\"make\": \"Toyota\", " +
+            "\"model\": \"C-HR\", " +
+            "\"engineSize\": \"1.8L\", " +
+            "\"fuel\": \"diesel\", " +
+            "\"year\": 2022, " +
+            "\"mileage\": 743, " +
+            "\"auctionDateTime\": \"2024/04/15 09:00:00\", " +
+            "\"startingBid\": 17000, " +
+            "\"favourite\": true, " +
+            "\"details\": { " +
+              "\"specification\": { " +
+                "\"vehicleType\": \"Car\", " +
+                "\"colour\": \"RED\", " +
+                "\"fuel\": \"petrol\", " +
+                "\"transmission\": \"Manual\", " +
+                "\"numberOfDoors\": 3, " +
+                "\"co2Emissions\": \"139 g/km\", " +
+                "\"noxEmissions\": 230, " +
+                "\"numberOfKeys\": 2 " +
+              "}, " +
+              "\"ownership\": { " +
+                "\"logBook\": \"Present\", " +
+                "\"numberOfOwners\": 8, " +
+                "\"dateOfRegistration\": \"2015/03/31 09:00:00\" " +
+              "}, " +
+              "\"equipment\": [ " +
+                "\"Air Conditioning\", " +
+                "\"Tyre Inflation Kit\", " +
+                "\"Photocopy of V5 Present\", " +
+                "\"Navigation HDD\", " +
+                "\"17 Alloy Wheels\", " +
+                "\"Engine Mods/Upgrades\", " +
+                "\"Modifd/Added Body Parts\" " +
+              "] " +
+            "} " +
+          "}, " +
+          "{ " +
+            "\"make\": \"Ford\", " +
+            "\"model\": \"Fiesta\", " +
+            "\"engineSize\": \"1.6L\", " +
+            "\"fuel\": \"petrol\", " +
+            "\"year\": 2022, " +
+            "\"mileage\": 9084, " +
+            "\"auctionDateTime\": \"2024/04/15 09:00:00\", " +
+            "\"startingBid\": 15000, " +
+            "\"favourite\": false, " +
+            "\"details\": { " +
+              "\"specification\": { " +
+                "\"vehicleType\": \"Car\", " +
+                "\"colour\": \"RED\", " +
+                "\"fuel\": \"petrol\", " +
+                "\"transmission\": \"Manual\", " +
+                "\"numberOfDoors\": 3, " +
+                "\"co2Emissions\": \"139 g/km\", " +
+                "\"noxEmissions\": 230, " +
+                "\"numberOfKeys\": 2 " +
+              "}, " +
+              "\"ownership\": { " +
+                "\"logBook\": \"Present\", " +
+                "\"numberOfOwners\": 8, " +
+                "\"dateOfRegistration\": \"2015/03/31 09:00:00\" " +
+              "}, " +
+              "\"equipment\": [ " +
+                "\"Air Conditioning\", " +
+                "\"Tyre Inflation Kit\", " +
+                "\"Photocopy of V5 Present\", " +
+                "\"Navigation HDD\", " +
+                "\"17 Alloy Wheels\", " +
+                "\"Engine Mods/Upgrades\", " +
+                "\"Modifd/Added Body Parts\" " +
+              "] " +
+            "} " +
+          "} " +
+        "]";
     }
 }

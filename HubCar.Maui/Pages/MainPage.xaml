@@ -140,6 +140,11 @@
                                                      Color="{Binding TextColor, Source={RelativeSource AncestorType={x:Type Element}}}"
                                                      FontFamily="MaterialIcon" />
                                 </Button.ImageSource>
+                                <Button.Triggers>
+                                    <DataTrigger TargetType="Button" Binding="{Binding Favourite}" Value="False">
+                                        <Setter Property="BackgroundColor" Value="Gray"></Setter>
+                                    </DataTrigger>
+                                </Button.Triggers>
                             </Button>
                             <VerticalStackLayout
                                 Grid.Row="1"

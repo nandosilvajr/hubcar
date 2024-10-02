@@ -1,6 +1,6 @@
 using HubCar.Shared.Models;
 
-namespace HubCar.Services.Converters
+namespace HubCar.Services
 {
     public interface ICarService
     {
