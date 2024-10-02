@@ -161,6 +161,7 @@ namespace HubCar.Shared.Constants
         public const string AutoStories = "\ue666";
         public const string AutofpsSelect = "\uefdc";
         public const string Autorenew = "\ue863";
+        public const string AutoTransmition = "\uf53f";
         public const string AvTimer = "\ue01b";
         public const string BabyChangingStation = "\uf19b";
         public const string BackHand = "\ue764";

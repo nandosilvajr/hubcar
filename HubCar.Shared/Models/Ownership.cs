@@ -11,6 +11,6 @@ namespace HubCar.Shared.Models
         public int NumberOfOwners { get; set; }
 
         [JsonPropertyName("dateOfRegistration")]
-        public string? DateOfRegistration { get; set; }
+        public DateTime? DateOfRegistration { get; set; }
     }
 }

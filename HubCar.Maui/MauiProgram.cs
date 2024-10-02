@@ -22,7 +22,7 @@ public static class MauiProgram
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                fonts.AddFont("MaterialIconsRound-Regular.otf", "MaterialIcon");
+                fonts.AddFont("MaterialSymbolsRounded_Filled-Regular.ttf", "MaterialIcon");
             });
         builder.Services.AddSingleton<CarService>();
         builder.Services.AddSingleton<MainPageViewModel>();

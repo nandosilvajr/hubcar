@@ -4,103 +4,523 @@
              xmlns:viewModels="clr-namespace:HubCar.Maui.ViewModels"
              xmlns:constants="clr-namespace:HubCar.Shared.Constants;assembly=HubCar.Shared"
              x:DataType="viewModels:DetailPageViewModel"
+             Title="{Binding Car.Model}"
              x:Class="HubCar.Maui.Pages.DetailPage">
     <ContentPage.Content>
-        <StackLayout Padding="12" Spacing="16">
-            <Frame
-                Padding="0"
-                CornerRadius="10"
-                HasShadow="True"
-                BorderColor="Transparent">
-                <Image.Shadow>
-                    <Shadow Brush="Gray"
-                            Offset="0.1,0.1"
-                            Opacity="1" />
-                </Image.Shadow>
-                <Image 
-                    VerticalOptions="Fill"
-                    Aspect="AspectFill"
-                    Source="car_placeholder.jpg"></Image>
-            </Frame>
-            <Grid HorizontalOptions="Fill">
-                 <Label
-                     HorizontalOptions="Start"
-                     VerticalOptions="Center"
-                     FontAttributes="Bold"
-                     FontSize="16"
-                     TextColor="{DynamicResource Primary}"
-                     FontFamily="OpenSansSemibold">
-                     <Label.Text>
-                         <MultiBinding StringFormat="{}{0} - {1}">
-                             <Binding Path="Car.Make" />
-                             <Binding Path="Car.Model" />
-                         </MultiBinding>
-                     </Label.Text>
-                 </Label>
-                <Button
-                    HeightRequest="32"
-                    WidthRequest="32"
-                    CornerRadius="18"
-                    Margin="8"
+        <ScrollView>
+            <StackLayout Padding="12" Spacing="16">
+                <Frame
                     Padding="0"
-                    HorizontalOptions="End"
-                    VerticalOptions="Start">
-                    <Button.ImageSource>
-                        <FontImageSource Glyph="{x:Static constants:MaterialIcon.Favorite}"
-                                         Size="18"
-                                         Color="{Binding TextColor, Source={RelativeSource AncestorType={x:Type Element}}}"
-                                         FontFamily="MaterialIcon" />
-                    </Button.ImageSource>
-                </Button>
-            </Grid>
-            <Grid ColumnDefinitions="1*,1*">
-                <VerticalStackLayout>
-                    <HorizontalStackLayout>
-                        <Image HorizontalOptions="End">
+                    CornerRadius="28"
+                    HasShadow="True"
+                    BorderColor="Transparent">
+                    <Image 
+                        VerticalOptions="Fill"
+                        Aspect="AspectFill"
+                        Source="car_placeholder.jpg"></Image>
+                </Frame>
+                <Grid HorizontalOptions="Fill">
+                     <Label
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center"
+                         FontAttributes="Bold"
+                         FontSize="18"
+                         TextColor="{DynamicResource Primary}"
+                         FontFamily="OpenSansSemibold">
+                         <Label.Text>
+                             <MultiBinding StringFormat="{}{0} - {1}">
+                                 <Binding Path="Car.Make" />
+                                 <Binding Path="Car.Model" />
+                             </MultiBinding>
+                         </Label.Text>
+                     </Label>
+                    <Button
+                        HeightRequest="32"
+                        WidthRequest="32"
+                        CornerRadius="18"
+                        Margin="8"
+                        Padding="0"
+                        HorizontalOptions="End"
+                        VerticalOptions="Start">
+                        <Button.ImageSource>
+                            <FontImageSource Glyph="{x:Static constants:MaterialIcon.Favorite}"
+                                             Size="18"
+                                             Color="{Binding TextColor, Source={RelativeSource AncestorType={x:Type Element}}}"
+                                             FontFamily="MaterialIcon" />
+                        </Button.ImageSource>
+                    </Button>
+                </Grid>
+                <FlexLayout 
+                    Direction="Row"
+                    Wrap="Wrap"
+                    JustifyContent="SpaceAround"
+                    AlignContent="Start">
+                        <!--Engine Size-->
+                        <Border 
+                            Margin="2"
+                            Padding="8"
+                            HeightRequest="60" 
+                            WidthRequest="110">
+                            <Grid>
+                                <Label 
+                                    FontAttributes="Bold"
+                                    VerticalOptions="Start"
+                                    TextColor="{DynamicResource Gray300}"
+                                    Text="Engine Size" 
+                                    FontSize="12"></Label>
+                                <Label 
+                                    FontAttributes="Bold"
+                                    VerticalOptions="End"
+                                    Text="{Binding Car.EngineSize}" 
+                                    FontSize="14"></Label>
+                            </Grid>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                        </Border>
+                        <!--Fuel Size-->
+                        <Border 
+                            Margin="2"
+                            Padding="8"
+                            HeightRequest="60" 
+                            WidthRequest="110">
+                            <Grid>
+                                <Label 
+                                    FontAttributes="Bold"
+                                    VerticalOptions="Start"
+                                    TextColor="{DynamicResource Gray300}"
+                                    Text="Fuel" 
+                                    FontSize="12"></Label>
+                                <Label 
+                                    FontAttributes="Bold"
+                                    VerticalOptions="End"
+                                    Text="{Binding Car.Fuel}" 
+                                    FontSize="14"></Label>
+                            </Grid>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                        </Border>
+                        <!--Year-->
+                        <Border 
+                            Margin="2"
+                            Padding="8"
+                            HeightRequest="60" 
+                            WidthRequest="110">
+                            <Grid>
+                                <Label 
+                                    FontAttributes="Bold"
+                                    VerticalOptions="Start"
+                                    TextColor="{DynamicResource Gray300}"
+                                    Text="Year" 
+                                    FontSize="12"></Label>
+                                <Label 
+                                    FontAttributes="Bold"
+                                    VerticalOptions="End"
+                                    Text="{Binding Car.Year}" 
+                                    FontSize="14"></Label>
+                            </Grid>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                        </Border>
+                        <!--Mileage-->
+                        <Border 
+                            Margin="2"
+                            Padding="8"
+                            HeightRequest="60" 
+                            WidthRequest="110">
+                            <Grid>
+                                <Label 
+                                    FontAttributes="Bold"
+                                    VerticalOptions="Start"
+                                    TextColor="{DynamicResource Gray300}"
+                                    Text="Mileage" 
+                                    FontSize="12"></Label>
+                                <Label 
+                                    FontAttributes="Bold"
+                                    VerticalOptions="End"
+                                    Text="{Binding Car.Mileage}" 
+                                    FontSize="14"></Label>
+                            </Grid>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                        </Border>
+                        <!--AuctionDateTime-->
+                        <Border 
+                            Margin="2"
+                            Padding="8"
+                            HeightRequest="60" 
+                            WidthRequest="110">
+                            <Grid>
+                                <Label 
+                                    FontAttributes="Bold"
+                                    VerticalOptions="Start"
+                                    TextColor="{DynamicResource Gray300}"
+                                    Text="Auction" 
+                                    FontSize="12"></Label>
+                                <Label 
+                                    FontAttributes="Bold"
+                                    VerticalOptions="End"
+                                    Text="{Binding Car.AuctionDateTime, StringFormat='{0:d}'}" 
+                                    FontSize="14"></Label>
+                            </Grid>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                        </Border>
+                        <!--Start Bid-->
+                        <Border 
+                            Margin="2"
+                            Padding="8"
+                            HeightRequest="60" 
+                            WidthRequest="110">
+                            <Grid>
+                                <Label 
+                                    FontAttributes="Bold"
+                                    VerticalOptions="Start"
+                                    TextColor="{DynamicResource Gray300}"
+                                    Text="Start Bid" 
+                                    FontSize="12"></Label>
+                                <Label 
+                                    FontAttributes="Bold"
+                                    VerticalOptions="End"
+                                    Text="{Binding Car.StartingBid, StringFormat='€{0}'}" 
+                                    FontSize="14"></Label>
+                            </Grid>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12" />
+                            </Border.StrokeShape>
+                        </Border>
+                </FlexLayout>
+                <!--Car specs-->
+                <Label 
+                    FontAttributes="Bold"
+                    VerticalOptions="Start"
+                    Text="Car Specs" 
+                    FontSize="14"></Label>
+                <FlexLayout 
+                    Direction="Row"
+                    Wrap="Wrap"
+                    JustifyContent="Start"
+                    AlignContent="Start">
+                    <!--Spec Color-->
+                    <Grid 
+                        Margin="2, 0"
+                        HeightRequest="30"
+                        ColumnSpacing="4"
+                        ColumnDefinitions="1*,1*" 
+                        HorizontalOptions="Fill">
+                        <Image 
+                            Grid.Column="0"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start">
                             <Image.Source>
-                                <FontImageSource Glyph="{x:Static constants:MaterialIcon.ArrowDropDown}"
-                                                 Size="32"
+                                <FontImageSource Glyph="{x:Static constants:MaterialIcon.ColorLens}"
+                                                 Size="24"
                                                  Color="{StaticResource Gray400}"
                                                  FontFamily="MaterialIcon" />
                             </Image.Source>
                         </Image>
-                    </HorizontalStackLayout>
-                </VerticalStackLayout>
-            </Grid>
-           
-        </StackLayout>
-        
-        <!--
-
-        [JsonPropertyName("engineSize")]
-        public string? EngineSize { get; set; }
-
-        [JsonPropertyName("fuel")]
-        public string? Fuel { get; set; }
-
-        [JsonPropertyName("year")]
-        public int Year { get; set; }
-
-        [JsonPropertyName("mileage")]
-        public int Mileage { get; set; }
-
-        [JsonPropertyName("auctionDateTime")]
-        public DateTime AuctionDateTime { get; set; }
-
-        [JsonPropertyName("startingBid")]
-        public int StartingBid { get; set; }
-
-        [JsonPropertyName("favourite")]
-        public bool Favourite { get; set; }
-
-        [JsonPropertyName("specification")]
-        public Specification? Specification { get; set; }
-
-        [JsonPropertyName("ownership")]
-        public Ownership? Ownership { get; set; }
-
-        [JsonPropertyName("equipment")]
-        public List<string>? Equipment { get; set; }
--->
+                        <Label 
+                            WidthRequest="30"
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center"
+                            Text="{Binding Car.Details.Specification.Colour}" 
+                            FontSize="14"></Label>
+                    </Grid>
+                    <!--Spec Fuel-->
+                    <Grid 
+                        Margin="2, 0"
+                        HeightRequest="30"
+                        ColumnSpacing="4"
+                        ColumnDefinitions="1*,2*" HorizontalOptions="Fill">
+                        <Image 
+                            Grid.Column="0"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start">
+                            <Image.Source>
+                                <FontImageSource Glyph="{x:Static constants:MaterialIcon.LocalGasStation}"
+                                                 Size="24"
+                                                 Color="{StaticResource Gray400}"
+                                                 FontFamily="MaterialIcon" />
+                            </Image.Source>
+                        </Image>
+                        <Label 
+                            WidthRequest="50"
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center"
+                            Text="{Binding Car.Details.Specification.Fuel}" 
+                            FontSize="14"></Label>
+                    </Grid>
+                    <!--Spec Transmition-->
+                    <Grid 
+                        Margin="2, 0"
+                        HeightRequest="30"
+                        ColumnSpacing="4"
+                        ColumnDefinitions="1*,2*" HorizontalOptions="Fill">
+                        <Image 
+                            Grid.Column="0"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start">
+                            <Image.Source>
+                                <FontImageSource Glyph="{x:Static constants:MaterialIcon.AutoTransmition}"
+                                                 Size="24"
+                                                 Color="{StaticResource Gray400}"
+                                                 FontFamily="MaterialIcon" />
+                            </Image.Source>
+                        </Image>
+                        <Label 
+                            WidthRequest="50"
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center"
+                            Text="{Binding Car.Details.Specification.Transmission}" 
+                            FontSize="14"></Label>
+                    </Grid>
+                    <!--Spec Co2-->
+                    <Grid 
+                        Margin="2, 0"
+                        HeightRequest="30"
+                        ColumnSpacing="4"
+                        ColumnDefinitions="1*,3*" 
+                        HorizontalOptions="Fill">
+                        <Image 
+                            Grid.Column="0"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start">
+                            <Image.Source>
+                                <FontImageSource Glyph="{x:Static constants:MaterialIcon.Co2}"
+                                                 Size="24"
+                                                 Color="{StaticResource Gray400}"
+                                                 FontFamily="MaterialIcon" />
+                            </Image.Source>
+                        </Image>
+                        <Label 
+                            HorizontalOptions="Fill"
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center"
+                            Text="{Binding Car.Details.Specification.Co2Emissions}" 
+                            FontSize="14"></Label>
+                    </Grid>
+                    <!--Spec NoxEmissions-->
+                    <Grid 
+                        Margin="2, 0"
+                        HeightRequest="30"
+                        ColumnSpacing="4"
+                        ColumnDefinitions="1*,3*" 
+                        HorizontalOptions="Fill">
+                        <Image 
+                            Grid.Column="0"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start">
+                            <Image.Source>
+                                <FontImageSource Glyph="{x:Static constants:MaterialIcon.Cloud}"
+                                                 Size="24"
+                                                 Color="{StaticResource Gray400}"
+                                                 FontFamily="MaterialIcon" />
+                            </Image.Source>
+                        </Image>
+                        <Label 
+                            Margin="8, 0 ,0, 0"
+                            HorizontalOptions="End"
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center"
+                            Text="{Binding Car.Details.Specification.NoxEmissions}" 
+                            FontSize="14"></Label>
+                    </Grid>
+                    <!--Spec Vehycle Type-->
+                    <Grid 
+                        Margin="2, 0"
+                        HeightRequest="30"
+                        ColumnSpacing="4"
+                        ColumnDefinitions="1*,3*" 
+                        HorizontalOptions="Fill">
+                        <Image 
+                            Grid.Column="0"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start">
+                            <Image.Source>
+                                <FontImageSource Glyph="{x:Static constants:MaterialIcon.AirportShuttle}"
+                                                 Size="24"
+                                                 Color="{StaticResource Gray400}"
+                                                 FontFamily="MaterialIcon" />
+                            </Image.Source>
+                        </Image>
+                        <Label 
+                            HorizontalOptions="Start"
+                            Margin="8, 0 ,0, 0"
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center"
+                            Text="{Binding Car.Details.Specification.VehicleType}" 
+                            FontSize="14"></Label>
+                    </Grid>
+                    <!--Spec Number of Doors-->
+                    <Grid 
+                        Margin="2, 0"
+                        HeightRequest="30"
+                        ColumnSpacing="4"
+                        ColumnDefinitions="1*,3*" 
+                        HorizontalOptions="Fill">
+                        <Image 
+                            Grid.Column="0"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start">
+                            <Image.Source>
+                                <FontImageSource Glyph="{x:Static constants:MaterialIcon.DoorFront}"
+                                                 Size="24"
+                                                 Color="{StaticResource Gray400}"
+                                                 FontFamily="MaterialIcon" />
+                            </Image.Source>
+                        </Image>
+                        <Label 
+                            HorizontalOptions="Start"
+                            Grid.Column="1"
+                            Margin="8, 0 ,0, 0"
+                            
+                            FontAttributes="Bold"
+                            VerticalOptions="Center"
+                            Text="{Binding Car.Details.Specification.NumberOfDoors}" 
+                            FontSize="14"></Label>
+                    </Grid>
+                    <!--Spec Number of keys-->
+                    <Grid 
+                        Margin="2, 0"
+                        HeightRequest="30"
+                        ColumnSpacing="4"
+                        ColumnDefinitions="1*,3*" 
+                        HorizontalOptions="Fill">
+                        <Image 
+                            Grid.Column="0"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start">
+                            <Image.Source>
+                                <FontImageSource Glyph="{x:Static constants:MaterialIcon.Key}"
+                                                 Size="24"
+                                                 Color="{StaticResource Gray400}"
+                                                 FontFamily="MaterialIcon" />
+                            </Image.Source>
+                        </Image>
+                        <Label 
+                            HorizontalOptions="Start"
+                            Grid.Column="1"
+                            Margin="8, 0 ,0, 0"
+                            WidthRequest="30"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center"
+                            Text="{Binding Car.Details.Specification.NumberOfKeys}" 
+                            FontSize="14"></Label>
+                    </Grid>
+                </FlexLayout>
+                <!--Car Details Ownership-->
+                <Label 
+                    FontAttributes="Bold"
+                    VerticalOptions="Start"
+                    Text="Ownership" 
+                    FontSize="14"></Label>
+                <Border 
+                    Padding="8"
+                    HorizontalOptions="Fill">
+                    <FlexLayout                 
+                        Direction="Row"
+                        Wrap="Wrap"
+                        JustifyContent="Start"
+                        AlignContent="Start">
+                        <!--Log book-->
+                        <HorizontalStackLayout
+                            Margin="0, 0, 8, 0"
+                            Spacing="8" HeightRequest="30">
+                            <Label 
+                                FontAttributes="Bold"
+                                VerticalOptions="Center"
+                                TextColor="{DynamicResource Gray300}"
+                                Text="Log book:" 
+                                FontSize="14"></Label>
+                            <Label 
+                                FontAttributes="Bold"
+                                VerticalOptions="Center"
+                                Text="{Binding Car.Details.Ownership.LogBook}" 
+                                FontSize="14"></Label>
+                        </HorizontalStackLayout>
+                        <!--Registration-->
+                        <HorizontalStackLayout
+                            Grid.Column="1"
+                            Spacing="8" HeightRequest="30">
+                            <Label 
+                                FontAttributes="Bold"
+                                VerticalOptions="Center"
+                                TextColor="{DynamicResource Gray300}"
+                                Text="Registration:" 
+                                FontSize="14"></Label>
+                            <Label 
+                                FontAttributes="Bold"
+                                VerticalOptions="Center"
+                                Text="{Binding Car.Details.Ownership.DateOfRegistration, StringFormat='{0:d}'}" 
+                                FontSize="14"></Label>
+                        </HorizontalStackLayout>
+                        <!--Registration-->
+                        <HorizontalStackLayout
+                            Grid.Column="1"
+                            Spacing="8" HeightRequest="30">
+                            <Label 
+                                FontAttributes="Bold"
+                                VerticalOptions="Center"
+                                TextColor="{DynamicResource Gray300}"
+                                Text="Owners:" 
+                                FontSize="14"></Label>
+                            <Label 
+                                FontAttributes="Bold"
+                                VerticalOptions="Center"
+                                Text="{Binding Car.Details.Ownership.NumberOfOwners, StringFormat='{0:d}'}" 
+                                FontSize="14"></Label>
+                        </HorizontalStackLayout>
+                    </FlexLayout>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12" />
+                    </Border.StrokeShape>
+                </Border>
+                <!--Car Details Equipments-->
+                <Label 
+                    FontAttributes="Bold"
+                    VerticalOptions="Start"
+                    Text="Equipments" 
+                    FontSize="14"></Label>
+                <FlexLayout 
+                    Direction="Row"
+                    Wrap="Wrap"
+                    JustifyContent="Start"
+                    AlignContent="Start"
+                    VerticalOptions="Fill"
+                    BindableLayout.ItemsSource="{Binding Car.Details.Equipment}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Border 
+                                Margin="2"
+                                HeightRequest="44" 
+                                Padding="12" 
+                                Stroke="{DynamicResource Primary}"
+                                BackgroundColor="{DynamicResource Primary}">
+                                <Label 
+                                    TextColor="White" 
+                                    VerticalOptions="Center"
+                                    FontAttributes="Bold"
+                                    VerticalTextAlignment="Center"
+                                    Text="{Binding .}"
+                                    HeightRequest="44"/>
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="12"/>
+                                </Border.StrokeShape>
+                            </Border>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
