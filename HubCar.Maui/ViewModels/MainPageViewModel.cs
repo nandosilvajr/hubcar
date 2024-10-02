@@ -1,11 +1,10 @@
 using System.Collections.ObjectModel;
-using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using HubCar.Maui.Pages;
-using HubCar.Maui.Services;
 using HubCar.Shared.Models;
 using CommunityToolkit.Maui.Views;
+using HubCar.Services;
 
 namespace HubCar.Maui.ViewModels
 {

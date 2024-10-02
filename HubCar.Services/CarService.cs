@@ -1,10 +1,11 @@
 using System.Text.Json;
-using HubCar.Maui.Converters;
+using HubCar.Services.Converters;
 using HubCar.Shared.Models;
+using Microsoft.Maui.Storage;
 
-namespace HubCar.Maui.Services
+namespace HubCar.Services
 {
-    public class CarService
+    public class CarService : ICarService
     {
         private readonly string _jsonPath = "Data/vehicles_dataset.json";
         

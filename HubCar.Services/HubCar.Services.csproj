@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\HubCar.Shared\HubCar.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Maui.Essentials" Version="8.0.61" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiAsset Include="Data\vehicles_dataset.json">
+        <LogicalName>Data/vehicles_dataset.json</LogicalName>
+      </MauiAsset>
+    </ItemGroup>
+
+</Project>

@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using HubCar.Maui.Pages;
-using HubCar.Maui.Services;
 using HubCar.Maui.ViewModels;
+using HubCar.Services;
 using MauiIcons.Material;
 using Microsoft.Extensions.Logging;
 using Xceed.Maui.Toolkit;

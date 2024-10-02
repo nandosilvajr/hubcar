@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HubCar.AndroidApp", "HubCar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HubCar.Shared", "HubCar.Shared\HubCar.Shared.csproj", "{CCD07B1E-14FC-423E-B49D-2742F371A64C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HubCar.UnitTest", "HubCar.UnitTest\HubCar.UnitTest.csproj", "{52546499-B7C3-4515-AF70-6B40AA46D364}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HubCar.Services", "HubCar.Services\HubCar.Services.csproj", "{71484A84-B9F1-4DEB-B477-9062B3CBDBFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{CCD07B1E-14FC-423E-B49D-2742F371A64C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCD07B1E-14FC-423E-B49D-2742F371A64C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCD07B1E-14FC-423E-B49D-2742F371A64C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52546499-B7C3-4515-AF70-6B40AA46D364}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52546499-B7C3-4515-AF70-6B40AA46D364}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52546499-B7C3-4515-AF70-6B40AA46D364}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52546499-B7C3-4515-AF70-6B40AA46D364}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71484A84-B9F1-4DEB-B477-9062B3CBDBFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71484A84-B9F1-4DEB-B477-9062B3CBDBFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71484A84-B9F1-4DEB-B477-9062B3CBDBFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71484A84-B9F1-4DEB-B477-9062B3CBDBFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

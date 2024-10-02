@@ -67,6 +67,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\HubCar.Services\HubCar.Services.csproj" />
       <ProjectReference Include="..\HubCar.Shared\HubCar.Shared.csproj" />
     </ItemGroup>
 
@@ -89,6 +90,7 @@
 
     <ItemGroup>
       <Folder Include="Models\" />
+      <Folder Include="Services\" />
     </ItemGroup>
 
 </Project>

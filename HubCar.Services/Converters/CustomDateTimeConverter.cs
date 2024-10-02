@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace HubCar.Maui.Converters
+namespace HubCar.Services.Converters
 {
 
     public class CustomDateTimeConverter : JsonConverter<DateTime>
